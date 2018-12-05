@@ -1,0 +1,16 @@
+.Home {
+  // mobile first < 425px
+  display: block;
+
+  &.--animate {}
+
+
+
+  @media (min-width: 425px) {}
+
+  @media (min-width: 768px) {}
+
+  @media (min-width: 1024px) {}
+
+  @media (min-width: 1440px) {}
+}
