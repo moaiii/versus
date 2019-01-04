@@ -19,11 +19,13 @@ pipelines:
         # trigger: manual  # uncomment to have a manual step
         image: atlassian/pipelines-awscli
         script:
+          - s3 --region "eu-west-1" rm s3://versus-web-dev
           - aws s3 sync --delete . s3://versus-web-dev
-    - step:
-        name: dev-s3
-        deployment: production # set to test, staging or production
-        # trigger: manual  # uncomment to have a manual step
-        image: atlassian/pipelines-awscli
-        script:
-          - aws s3 sync --delete . s3://versus-web-prod
+    # - step:
+    #     name: dev-s3
+    #     deployment: production # set to test, staging or production
+    #     # trigger: manual  # uncomment to have a manual step
+    #     image: atlassian/pipelines-awscli
+    #     script:
+    #       - s3 --region "eu-west-1" rm s3://versus-web-prod
+    #       - aws s3 sync --delete . s3://versus-web-prod
