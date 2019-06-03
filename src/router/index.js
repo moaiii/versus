@@ -1,7 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Route } from "react-router-dom";
 
-// import view components 
+// import view components
 import Home from '../ui/views/Home';
 
 // routes
@@ -10,7 +10,7 @@ import Home from '../ui/views/Home';
 export default(
   <Router basename="/">
     <div className="Router__container">
-      <Route 
+      <Route
         exact path={ '/' }
         component={ Home }/>
     </div>

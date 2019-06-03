@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import './Home.scss'
 
 type Props = {
   countries: Array<any>,
@@ -10,6 +11,7 @@ type Props = {
   seasons: Array<Object>,
   setDateSelection: Function
 };
+
 type State = {};
 
 export default class Home extends React.Component<Props, State> {
@@ -27,8 +29,15 @@ export default class Home extends React.Component<Props, State> {
 
   render(): React.Element<"div"> {
 
-    const { countries, getCountries, setSelectedCountry,
-      leagues, setSelectedLeague, seasons, setDateSelection } = this.props;
+    const {
+      countries,
+      getCountries,
+      setSelectedCountry,
+      leagues,
+      setSelectedLeague,
+      seasons,
+      setDateSelection
+    } = this.props;
 
     // const { } = this.state;
 
@@ -82,7 +91,7 @@ export default class Home extends React.Component<Props, State> {
             <h2>3. Seasons</h2>
             {_seasons}
           </div>
-          <div className="seasons">
+          <div className="games">
             <h2>4. Games</h2>
             <p>See console for games output</p>
           </div>

@@ -6,10 +6,11 @@ import ReactDOM from "react-dom";
 import router from "./router";
 import store from "./db/store";
 
-import(`versus-common-link`)
-  .then(common => {
-    common.default.utils.startup(store);
+import(null)
+  .then(() => {
+    // TODO:
+    // start up script here
 
     ReactDOM.render(<Provider store={store}>{router}</Provider>,
       document.getElementById("root"));
-  })
+  });

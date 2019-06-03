@@ -1,7 +1,14 @@
-import Home from "./Home.jsx";
-import common from 'versus-common-link';
 // @flow
+
+import Home from "./Home.jsx";
+import store from '../../../db/store';
 import { connect } from "react-redux";
+import {
+  getCountries,
+  setSelectedCountry,
+  setSelectedLeague,
+  setDateSelection,
+} from './Home.actions';
 
 function mapStoreToProps(store) {
   return {
@@ -13,14 +20,14 @@ function mapStoreToProps(store) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCountries: () => { dispatch(common.actions.getCountries.submit()) },
+    getCountries: () => { dispatch(getCountries.submit()) },
 
-    setSelectedCountry: (country) => { dispatch(common.actions.setSelectedCountry(country)) },
+    setSelectedCountry: (country) => { dispatch(setSelectedCountry(country)) },
 
-    setSelectedLeague: (league) => { dispatch(common.actions.setSelectedLeague(league)) },
+    setSelectedLeague: (league) => { dispatch(setSelectedLeague(league)) },
 
     setDateSelection: (dates) => {
-      dispatch(common.actions.setDateSelection({
+      dispatch(setDateSelection({
         dates,
         middlewareMode: "last"
       }));
