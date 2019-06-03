@@ -22,7 +22,7 @@ const appendParams = fp.flow(
 export const networkRequest = (config, payload) => {
   const invalidParams = fp.has('params', config)
     ? validateParams(config, payload)
-    : [];
+    : []; // test
 
   if (fp.isEmpty(invalidParams)) {
 
