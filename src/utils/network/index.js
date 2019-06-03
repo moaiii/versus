@@ -11,7 +11,6 @@ const validateParams = (config, payload) => fp.flow(
 )(config);
 
 const rejected = type => error => {
-
   console.error(`${type}\n${error}`);
 };
 
@@ -21,7 +20,6 @@ const appendParams = fp.flow(
 );
 
 export const networkRequest = (config, payload) => {
-
   const invalidParams = fp.has('params', config)
     ? validateParams(config, payload)
     : [];
@@ -41,6 +39,5 @@ export const networkRequest = (config, payload) => {
       .catch(rejected('[NEWORK ERROR]'));
   }
 
-  return Promise.reject(new Error('Invalid Params: ' + fp.join(', ', invalidParams)))
-    .then(fp.noop, rejected('[INVALID PARAM]'));
+  return Promise.reject(new Error(JSON.stringify(invalidParams)));
 };

@@ -1,8 +1,27 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+
+* {
+  font-family: 'Montserrat', sans-serif;
+}
+
 .Home {
   // mobile first < 425px
+  padding: 2rem;
   display: block;
 
-  &.--animate {}
+  &.--animate {
+    transition: none;
+  }
+
+  .inner-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .games {
+    display: flex;
+    flex-direction: column
+  }
 
   @media (min-width: 425px) {}
 

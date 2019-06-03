@@ -1,38 +1,34 @@
 // @flow
 
 import Home from "./Home.jsx";
-import store from '../../../db/store';
+import store from '../../../utils/redux/store';
 import { connect } from "react-redux";
-import {
-  getCountries,
-  setSelectedCountry,
-  setSelectedLeague,
-  setDateSelection,
-} from './Home.actions';
+import * as actions from './Home.actions';
 
 function mapStoreToProps(store) {
   return {
     countries: store.countriesReducer.value,
     leagues: store.leaguesReducer.value,
-    seasons: store.datesReducer.seasons
+    seasons: store.datesReducer.seasons,
+    games: store.gamesReducer.games,
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
-    getCountries: () => { dispatch(getCountries.submit()) },
-
-    setSelectedCountry: (country) => { dispatch(setSelectedCountry(country)) },
-
-    setSelectedLeague: (league) => { dispatch(setSelectedLeague(league)) },
-
-    setDateSelection: (dates) => {
-      dispatch(setDateSelection({
+    getSeasons: () => dispatch(actions.getSeasons()),
+    getCountries: () => dispatch(actions.getCountries.submit()),
+    setSelectedCountry: country => dispatch(actions.setSelectedCountry(country)),
+    setSelectedLeague: league => dispatch(actions.setSelectedLeague(league)),
+    setDateSelection: dates => dispatch(actions.setDateSelection({
         dates,
         middlewareMode: "last"
-      }));
-    }
+      })
+    ),
   }
 }
 
-export default connect(mapStoreToProps, mapDispatchToProps)(Home);
+export default connect(
+  mapStoreToProps,
+  mapDispatchToProps
+)(Home);

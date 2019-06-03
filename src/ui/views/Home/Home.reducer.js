@@ -12,8 +12,7 @@ export const leaguesReducer = (state = leaguesInitialState, action) => {
     case "[LEAGUES] SET_SELECTED_LEAGUE": {
       return {
         ...state,
-        selected: state.value
-          .filter( league => league.league_name === action.payload)[0]
+        selected: action.payload
       };
     }
     case "[LEAGUES] GET_LEAGUE_STANDINGS__SUBMIT": {
@@ -80,6 +79,10 @@ const gamesInitialState = {
 export const gamesReducer = (state = gamesInitialState, action) => {
   switch (action.type) {
     case "[GAMES] GET_GAMES__SUBMIT": {
+      return state;
+    }
+
+    case "[GAMES] GET_GAMES__RESOLVED": {
       return {
         ...state,
         games: action.payload
@@ -137,8 +140,7 @@ export const countriesReducer = (state = countriesInitialState, action) => {
     case "[COUNTRIES] SET_SELECTED_COUNTRY": {
       return {
         ...state,
-        selected: state.value
-          .filter( country => country.country_name === action.payload)[0]
+        selected: action.payload
       };
     }
     case "[COUNTRIES] GET_COUNTRIES__SUBMIT": {

@@ -1,14 +1,12 @@
 import React from "react";
-import { HashRouter as Router, Route } from "react-router-dom";
+import { Route, Router } from 'react-router-dom';
+import history from "./history";
 
 // import view components
 import Home from '../ui/views/Home';
 
-// routes
-// import routes from './routes.json';
-
 export default(
-  <Router basename="/">
+  <Router basename="/" history={history}>
     <div className="Router__container">
       <Route
         exact path={ '/' }
