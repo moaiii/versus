@@ -7,3 +7,19 @@
 [JIRA](https://football-versus.atlassian.net/secure/RapidBoard.jspa?projectKey=VR&rapidView=6)
 
 [Google drive](https://drive.google.com/drive/folders/1ryhtsya98-6WM5ovWenJ-VSa1qD2zq_r)
+
+## Development 
+
+Branch from MVP with a branch naming convention:
+
+`<name>/feature`
+
+## Getting started
+
+- Clone the repository
+- `npm i`
+- `npm start`
+
+## Testing 
+
+`npm test`
