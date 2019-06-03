@@ -14,6 +14,8 @@ Branch from MVP with a branch naming convention:
 
 `<name>/<ticket-number>-<feature-name>`
 
+Once work completed create a pull request to merge to the `mvp` branch only
+
 ## Getting started
 
 - Clone the repository
