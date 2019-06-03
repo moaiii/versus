@@ -12,7 +12,7 @@
 
 Branch from MVP with a branch naming convention:
 
-`<name>/feature`
+`<name>/<ticket-number>-<feature-name>`
 
 ## Getting started
 
