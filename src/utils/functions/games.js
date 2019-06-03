@@ -1,7 +1,8 @@
 // @flow
-import type {Game} from '../types';
+// import type {Game} from '../types';
 const compose = require('fp-compose');
 const find = require('lodash/find');
+
 
 /**
  * Types

@@ -1,10 +1,10 @@
 import gameFuncs from '../games';
-import games from '../../mocks/games.mock';
+import { gamesData } from '../../mocks';
 
 describe ('excudeOppositionTeams()', () => {
   const gamesWithoutChelsea = gameFuncs
     .excudeOppositionTeams(['Chelsea', 'Everton'])(games);
-  
+
   it ('Removes all games involving teams included in the exclusions array', () => {
     gamesWithoutChelsea.forEach((game) => {
       expect(game.match_hometeam_name).not.toEqual('Chelsea');
