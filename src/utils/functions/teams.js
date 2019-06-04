@@ -64,6 +64,6 @@ function getAllTeamsAndPlayers(games = []) {
   }
 }
 
-module.exports = {
+export {
   getAllTeamsAndPlayers
 };

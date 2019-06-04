@@ -1,4 +1,4 @@
-import gameFuncs from '../games';
+import * as gameFuncs from '../games';
 import { games } from '../../mocks';
 
 

@@ -27,3 +27,15 @@ export const setSelectedLeague
 
 export const getLeagueStandings
   = networkActionCreator("[LEAGUES] GET_LEAGUE_STANDINGS");
+
+export const generateTeamObjects
+  = actionCreator("[DATA] GENERATE_TEAM_OBJECTS");
+
+export const setTeams
+  = actionCreator("[DATA] SET_TEAMS");
+
+export const generateTable
+  = actionCreator("[DATA] GENERATE_TABLE");
+
+export const setTable
+  = actionCreator("[DATA] SET_TABLE");

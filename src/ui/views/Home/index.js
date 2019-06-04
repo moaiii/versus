@@ -11,6 +11,7 @@ function mapStoreToProps(store) {
     leagues: store.leaguesReducer.value,
     seasons: store.datesReducer.seasons,
     games: store.gamesReducer.games,
+    table: store.dataReducer.table,
   }
 }
 

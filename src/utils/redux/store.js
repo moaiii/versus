@@ -7,6 +7,7 @@ import {
   gamesReducer,
   datesReducer,
   countriesReducer,
+  dataReducer
 } from '../../ui/views/Home/Home.reducer';
 
 const logger = createLogger({
@@ -25,6 +26,7 @@ const reducers = combineReducers({
   gamesReducer,
   datesReducer,
   countriesReducer,
+  dataReducer
 });
 
 

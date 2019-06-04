@@ -4,8 +4,68 @@ import fp from 'lodash/fp';
 import {networkRequest} from '../../../utils/network';
 import endpoints from '../../../utils/enums/endpoints';
 import seasonDates from '../../../utils/enums/season-dates.json';
+import { getAllTeamsAndPlayers, getThisTeamsGames, generateStandings } from '../../../utils/functions';
+import { sortBy } from 'lodash';
+
+const dataMiddleware = {
+
+  /**
+   * @dispatches setTeams
+   */
+  '[DATA] GENERATE_TEAM_OBJECTS': async (store, next, action) => {
+    try {
+      const allTeams = getAllTeamsAndPlayers(action.payload);
+
+      const teamsWithData = allTeams
+        .map(team => {
+          return {
+            ...team,
+            games: getThisTeamsGames(team.name)(action.payload)
+          }
+        })
+        .map(team => {
+          return {
+            ...team,
+            standings: generateStandings(team.name, team.games)
+          }
+        });
+
+        store.dispatch(actions.setTeams(teamsWithData));
+
+    } catch (error) {
+      console.error(`[ERROR] generating the team objects\n`, error);
+    }
+  },
+
+  /**
+   * @dispatches generateTable
+   */
+  '[DATA] SET_TEAMS': async (store, next, action) => {
+    try {
+      store.dispatch(actions.generateTable());
+    } catch (error) {
+      console.error(`[ERROR] setting teams games\n`, error);
+    }
+  },
+
+  '[DATA] GENERATE_TABLE': async (store, next, action) => {
+    try {
+      const { dataReducer: { teams } } = store.getState();
+      const tableSorted = sortBy(teams, el => el.standings.pointsTotal).reverse();
+      store.dispatch(actions.setTable(tableSorted));
+
+    } catch (error) {
+      console.error(`[ERROR] setting teams games\n`, error);
+    }
+  }
+}
+
 
 const countriesMiddleware = {
+
+  /**
+   * @dispatches getCountries
+   */
   '[COUNTRIES] GET_COUNTRIES__SUBMIT': async (store, next, action) => {
     const _endpoint = endpoints['GET_COUNTRIES'];
     try {
@@ -17,6 +77,9 @@ const countriesMiddleware = {
     }
   },
 
+  /**
+   * @dispatches getLeagues
+   */
   '[COUNTRIES] SET_SELECTED_COUNTRY': async (store, next, action) => {
     if(action) {
       store.dispatch(actions.getLeagues.submit(action.payload));
@@ -53,6 +116,7 @@ const gamesMiddleware = {
     try {
       const res = await networkRequest(_endpoint, fp.get('payload.req', action));
       store.dispatch(actions.getGames.resolved(res.data));
+      store.dispatch(actions.generateTeamObjects(res.data));
     } catch (error) {
       console.error(`[ERROR] get games middleware\n`, error);
       store.dispatch(actions.getGames.rejected(JSON.stringify(error)));
@@ -68,7 +132,6 @@ const leaguesMiddleware = {
       const res = await networkRequest(_endpoint, {
         country_id: action.payload.country_id
       });
-      console.log(res)
       store.dispatch(actions.getLeagues.resolved(res.data));
     } catch (e) {
       console.error(`[ERROR] get leagues middleware\n`, e);
@@ -95,5 +158,6 @@ export {
   countriesMiddleware,
   seasonsMiddleware,
   gamesMiddleware,
-  leaguesMiddleware
+  leaguesMiddleware,
+  dataMiddleware
 }

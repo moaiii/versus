@@ -2,7 +2,8 @@ import {
   countriesMiddleware,
   seasonsMiddleware,
   gamesMiddleware,
-  leaguesMiddleware
+  leaguesMiddleware,
+  dataMiddleware
 } from '../../ui/views/Home/Home.middleware'
 
 
@@ -10,7 +11,8 @@ const middlewares = {
   ...countriesMiddleware,
   ...seasonsMiddleware,
   ...gamesMiddleware,
-  ...leaguesMiddleware
+  ...leaguesMiddleware,
+  ...dataMiddleware,
 };
 
 
