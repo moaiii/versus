@@ -1,4 +1,4 @@
-module.exports = [
+export default [
   {
     "match_id": "304958",
     "country_id": "169",
