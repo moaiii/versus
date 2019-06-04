@@ -1,5 +1,5 @@
-const gameFuncs = require('../games');
-const { gamesData } = require('../../mocks');
+import gameFuncs from '../games';
+import { games } from '../../mocks';
 
 
 describe ('excudeOppositionTeams()', () => {
@@ -73,20 +73,20 @@ describe ('filterOutGoals()', () => {
   });
 });
 
-describe ('filterOutCards()', () => {
-  const timeWindow = {from: 0, to: 45};
-  const secondHalfCardsRemoved = gameFuncs.filterOutCards(timeWindow)(games);
+// describe ('filterOutCards()', () => {
+//   const timeWindow = {from: 0, to: 45};
+//   const secondHalfCardsRemoved = gameFuncs.filterOutCards(timeWindow)(games);
 
-  it ('removes cards outwith time frame', () => {
-    secondHalfCardsRemoved.forEach((games) => {
-      games.cards.forEach((card) => {
-        const time = parseInt(card.time, 10);
-        expect(time).toBeGreaterThanOrEqual(timeWindow.from);
-        expect(time).toBeLessThanOrEqual(timeWindow.to);
-      });
-    });
-  });
-});
+//   it ('removes cards outwith time frame', () => {
+//     secondHalfCardsRemoved.forEach((games) => {
+//       games.cards.forEach((card) => {
+//         const time = parseInt(card.time, 10);
+//         expect(time).toBeGreaterThanOrEqual(timeWindow.from);
+//         expect(time).toBeLessThanOrEqual(timeWindow.to);
+//       });
+//     });
+//   });
+// });
 
 // describe ('excludeGamesThesePlayersStart()', () => {
 //   const excludedPlayers = ['Bernd Leno', 'Petr Cech']

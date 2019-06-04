@@ -5,19 +5,11 @@ const find = require('lodash/find');
 
 
 /**
- * Types
- */
-type TimeWindow = {
-  from: number,
-  to: number
-}
-
-/**
  * @param {string} team
  * @return {Function(Array<Game>)} curry curry
  */
-function getThisTeamsGames(team: string = ''): Function {
-  return (games): Array<Game> => {
+function getThisTeamsGames(team = '') {
+  return (games) => {
     return games
       .filter((game) =>
         game.match_hometeam_name === team ||
@@ -25,12 +17,13 @@ function getThisTeamsGames(team: string = ''): Function {
   };
 }
 
+
 /**
  * @param {Array<string>} teamExclusions
  * @return {Function(Array<Game>)} curry curry
  */
-function excudeOppositionTeams(teamExclusions: Array<string> = []): Function {
-  return (games): Array<Game> => {
+function excudeOppositionTeams(teamExclusions = []) {
+  return (games) => {
     return games
       .filter((game) =>
         !teamExclusions.includes(game.match_hometeam_name) &&
@@ -39,12 +32,13 @@ function excudeOppositionTeams(teamExclusions: Array<string> = []): Function {
   };
 }
 
+
 /**
  * @param {Array<string>} teamInclusions
  * @return {Function(Array<Game>)} curry
  */
-function includeOppositionTeams(teamInclusions: Array<string> = []): Function {
-  return (games): Array<Game> => {
+function includeOppositionTeams(teamInclusions = []) {
+  return (games) => {
     if(teamInclusions.length === 0 || !teamInclusions) {
       return games;
     }
@@ -57,14 +51,15 @@ function includeOppositionTeams(teamInclusions: Array<string> = []): Function {
   };
 }
 
+
 /**
  * @param timeWindow the minute range from 0 to 90+
  * @param {number} timeWindow.from
  * @param {number} timeWindow.to
  * @return {Function(Array<Game>)} curry
  */
-function filterOutGoals(timeWindow: ?TimeWindow = null): Function {
-  return (games): Array<Game> => {
+function filterOutGoals(timeWindow = null) {
+  return (games) => {
     if (!timeWindow) {
       return games;
     }
@@ -79,35 +74,37 @@ function filterOutGoals(timeWindow: ?TimeWindow = null): Function {
   };
 }
 
-/**
- * @param timeWindow the minute range from 0 to 90+
- * @param {number} timeWindow.from
- * @param {number} timeWindow.to
- * @return {Function(Array<Game>)} curry
- */
-function filterOutCards(timeWindow: ?TimeWindow = null): Function {
-  return (games): Array<Game> => {
-    if (!timeWindow) {
-      return games;
-    }
-      return games
-        .map((game) => Object.assign({}, game, {
-          cards: game['cards'].filter((gs) => {
-            return parseInt(gs.time, 10) >= timeWindow.from &&
-            parseInt(gs.time, 10) <= timeWindow.to;
-          })
-        }));
 
-  };
-}
+// /**
+//  * @param timeWindow the minute range from 0 to 90+
+//  * @param {number} timeWindow.from
+//  * @param {number} timeWindow.to
+//  * @return {Function(Array<Game>)} curry
+//  */
+// function filterOutCards(timeWindow = null) {
+//   return (games) => {
+//     if (!timeWindow) {
+//       return games;
+//     }
+//       return games
+//         .map((game) => Object.assign({}, game, {
+//           cards: game['cards'].filter((gs) => {
+//             return parseInt(gs.time, 10) >= timeWindow.from &&
+//             parseInt(gs.time, 10) <= timeWindow.to;
+//           })
+//         }));
+
+//   };
+// }
+
 
 /**
  * Mutative function altering the scores based on whats
  * in the goalscorers array
  * @return {Function(Array<Game>)} curry
  */
-function recalculateScores(): Function {
-  return (games): Array<Game> => {
+function recalculateScores() {
+  return (games) => {
     return games
       .map((game) => {
         let match_hometeam_score = 0;
@@ -140,33 +137,35 @@ function recalculateScores(): Function {
   };
 }
 
-/**
- * @param {Array<string>} excludedPlayers
- * @return {Function(Array<Game>)} curry
- */
-function excludeGamesThesePlayersStart(
-  excludedPlayers: Array<string> = []): Function {
-  return (games): Array<Game> => {
-    return games
-      .filter((game) => {
-        let playersFoundInThisGame = excludedPlayers
-          .map((player) =>
-            find({'lineup_player': player}, game.lineup.home.starting_lineups) ||
-            find({'lineup_player': player}, game.lineup.away.starting_lineups))
-          .filter((res) => typeof res !== 'undefined');
 
-        // i.e. these players did not start so return the game obj
-        return playersFoundInThisGame.length === 0;
-      });
-  };
-}
+// /**
+//  * @param {Array<string>} excludedPlayers
+//  * @return {Function(Array<Game>)} curry
+//  */
+// function excludeGamesThesePlayersStart(
+//   excludedPlayers = []) {
+//   return (games) => {
+//     return games
+//       .filter((game) => {
+//         let playersFoundInThisGame = excludedPlayers
+//           .map((player) =>
+//             find({'lineup_player': player}, game.lineup.home.starting_lineups) ||
+//             find({'lineup_player': player}, game.lineup.away.starting_lineups))
+//           .filter((res) => typeof res !== 'undefined');
+
+//         // i.e. these players did not start so return the game obj
+//         return playersFoundInThisGame.length === 0;
+//       });
+//   };
+// }
+
 
 /**
  * @param {string} team
  * @param {Object} game
  * @return {string}
  */
-function getThisTeamsStatus(team: string = '', game: ?Game = null): string {
+function getThisTeamsStatus(team= '', game = null) {
   if (!team || !game) {
     throw new Error(`[DEV ERROR] A param was no supplied to getThisTeamsStatus.
       team = ${team}, game = ${JSON.stringify(game)}`);
@@ -181,6 +180,7 @@ function getThisTeamsStatus(team: string = '', game: ?Game = null): string {
   }
 }
 
+
 /**
  * @example
  * const filteredGames = filterGames({
@@ -192,16 +192,6 @@ function getThisTeamsStatus(team: string = '', game: ?Game = null): string {
     excludedPlayers: ['Bernd Leno', 'Mesut Ozil']
   })
  */
-
-type FilterGamesParams = {
-  team: string,
-  teamExclusions: Array<string>,
-  teamInclusions: Array<string>,
-  timeWindow: TimeWindow,
-  games: Array<Game>,
-  excludedPlayers: Array<string>
-}
-
 function filterGames({
   team = '',
   teamExclusions = [],
@@ -209,10 +199,10 @@ function filterGames({
   timeWindow = {from: 0, to: 90},
   games = [],
   excludedPlayers = []
-}: FilterGamesParams = {}): Array<Game> {
+}){
   return compose(
-    excludeGamesThesePlayersStart(excludedPlayers),
-    filterOutCards(timeWindow),
+    // excludeGamesThesePlayersStart(excludedPlayers),
+    // filterOutCards(timeWindow),
     recalculateScores(),
     filterOutGoals(timeWindow),
     excudeOppositionTeams(teamExclusions),
@@ -224,10 +214,10 @@ function filterGames({
 module.exports = {
   filterGames,
   filterOutGoals,
-  filterOutCards,
+  // filterOutCards,
   getThisTeamsGames,
   getThisTeamsStatus,
   excudeOppositionTeams,
   includeOppositionTeams,
-  excludeGamesThesePlayersStart
+  // excludeGamesThesePlayersStart
 };

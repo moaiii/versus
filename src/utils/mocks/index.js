@@ -1,5 +1,5 @@
-import { gamesData } from './games.mock';
+import games from './games.mock';
 
-export default {
-  gameData,
+export {
+  games,
 };
