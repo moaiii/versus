@@ -1,5 +1,6 @@
-import gameFuncs from '../games';
-import { gamesData } from '../../mocks';
+const gameFuncs = require('../games');
+const { gamesData } = require('../../mocks');
+
 
 describe ('excudeOppositionTeams()', () => {
   const gamesWithoutChelsea = gameFuncs
