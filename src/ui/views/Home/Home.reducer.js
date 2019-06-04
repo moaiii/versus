@@ -127,6 +127,7 @@ export const datesReducer = (state = datesInitialState, action) => {
   }
 };
 
+
 const countriesInitialState = {
   value: [],
   selected: null,
@@ -166,6 +167,33 @@ export const countriesReducer = (state = countriesInitialState, action) => {
         pending: false,
         complete: false,
         error: true
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
+};
+
+
+const dataInitialState = {
+  teams: [],
+  table: [],
+};
+
+export const dataReducer = (state = dataInitialState, action) => {
+  switch (action.type) {
+    case "[DATA] SET_TEAMS": {
+      return {
+        ...state,
+        teams: action.payload
+      };
+    }
+    case "[DATA] SET_TABLE": {
+      return {
+        ...state,
+        table: action.payload
       };
     }
 

@@ -1,7 +1,3 @@
-// @flow
-
-import type {Game} from '../types/Game.type';
-import type {Standing} from '../types/Standing.type';
 import {getThisTeamsStatus} from './games';
 
 const add = require('lodash/add');
@@ -10,7 +6,7 @@ const add = require('lodash/add');
  * @param {string} team
  * @param {Array<Game>} games
  */
-function generateStandings(team: string = '', games: Array<Game> = []): Standing {
+function generateStandings(team= '', games = []) {
   let points = [];
   let pointsCumulative = [];
   let form = [];
@@ -64,8 +60,12 @@ function generateStandings(team: string = '', games: Array<Game> = []): Standing
     gamesTotal.played++;
   });
 
+  const pointsTotal = points
+    .reduce((ac, cu) => ac + cu, 0);
+
   return {
     points,
+    pointsTotal,
     pointsCumulative,
     form,
     gamesTotal,
@@ -73,6 +73,6 @@ function generateStandings(team: string = '', games: Array<Game> = []): Standing
   };
 }
 
-module.exports = {
+export {
   generateStandings
 };

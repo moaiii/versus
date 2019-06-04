@@ -21,6 +21,7 @@ export default class Home extends React.Component {
 
   render() {
     const {
+      table,
       countries,
       setSelectedCountry,
       leagues,
@@ -54,6 +55,14 @@ export default class Home extends React.Component {
         label={'Select season'}
       />;
 
+    const _leagueTablePOC =
+    <div className="league-table">
+      {
+        table.map(team => (<p>{team.name}, p({team.standings.gamesTotal.played}), pts({team.standings.pointsTotal})</p>))
+      }
+    </div>
+
+
     const _gamesList = games.map((game, i) => {
       const {
         match_hometeam_name,
@@ -85,8 +94,8 @@ export default class Home extends React.Component {
             {_seasonsSelector}
           </div>
           <div className="games">
-            <h2>4. Games</h2>
-            {_gamesList}
+            <h2>4. League Table</h2>
+            {_leagueTablePOC}
           </div>
         </div>
       </div>

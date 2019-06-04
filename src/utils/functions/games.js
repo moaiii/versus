@@ -211,7 +211,7 @@ function filterGames({
   )(games);
 }
 
-module.exports = {
+export {
   filterGames,
   filterOutGoals,
   // filterOutCards,

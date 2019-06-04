@@ -1,12 +1,12 @@
 // @flow
-import {generateStandings} from '../functions/standings';
+import { generateStandings } from '../functions/standings';
 
 export default class Team {
   name;
   games = []
   squad;
   manager = ''
-  standing = {}
+  standings = {}
 
   constructor(initName) {
     this.name = initName;
@@ -43,7 +43,7 @@ export default class Team {
 
   setStanding() {
     if(this.games.length > 0) {
-      this.standing = generateStandings(this.name, this.games);
+      this.standings = generateStandings(this.name, this.games);
     } else {
       throw new Error(`[DEV ERROR] No games available in ${this.name} object.
         Add games to this class before generating standings`);

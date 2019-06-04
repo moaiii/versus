@@ -1,9 +1,9 @@
 import games from '../../mocks/games.mock';
-import teamFuncs from '../teams';
+import { getAllTeamsAndPlayers } from '../teams';;
 
 describe('getAllTeamsAndPlayers()', () => {
   const groupedTeamsandPlayers
-    = teamFuncs.getAllTeamsAndPlayers(games);
+    = getAllTeamsAndPlayers(games);
 
   it('should create 8 team classes', () => {
     /**
