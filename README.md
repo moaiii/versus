@@ -28,6 +28,7 @@ Once work completed create a pull request to merge to the `mvp` branch only
 
 
 ## Contributors 
+![Chris melville](https://avatars1.githubusercontent.com/u/12732217?s=40&v=4)
 [@moaiii](https://github.com/moaiii) - Full stack engineering and project management
 
 [@ifyndu](https://github.com/ifyndu) - Full stack engineering
