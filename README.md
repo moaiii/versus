@@ -28,11 +28,11 @@ Once work completed create a pull request to merge to the `mvp` branch only
 
 
 ## Contributors 
-![Chris melville](https://avatars1.githubusercontent.com/u/12732217?s=40&v=4)
+![Chris melville](https://avatars1.githubusercontent.com/u/12732217?s=20&v=4)
 [@moaiii](https://github.com/moaiii) - Full stack engineering and project management
 
-![Ify Ndu](https://avatars1.githubusercontent.com/u/15639127?s=180&v=4)
+![Ify Ndu](https://avatars1.githubusercontent.com/u/15639127?s=20&v=4)
 [@ifyndu](https://github.com/ifyndu) - Full stack engineering
 
-![Chris Croal](https://avatars1.githubusercontent.com/u/44072215?s=180&v=4)
+![Chris Croal](https://avatars1.githubusercontent.com/u/44072215?s=20&v=4)
 [@ccroal](https://github.com/ccroal) - Full stack engineering
