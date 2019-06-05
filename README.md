@@ -25,3 +25,6 @@ Once work completed create a pull request to merge to the `mvp` branch only
 ## Testing 
 
 `npm test`
+
+
+@all-contributors please add @moaiii for full stack development and project management
