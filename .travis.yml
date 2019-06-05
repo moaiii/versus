@@ -8,6 +8,8 @@ scripts:
   - npm install
   - npm run test
   - npm run build
+  - echo $access_key_id
+  - echo $secret_access_key
 
 deploy:
   provider: s3
