@@ -1,4 +1,4 @@
-# Versus
+# ⚽Versus 📈
 
 [Slack channel](https://moaiii.slack.com)
 
