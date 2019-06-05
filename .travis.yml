@@ -15,4 +15,6 @@ deploy:
 
 branches:
   only:
-  - chris/mvp-1-s3-bucket
+    - master
+    - mvp
+    - chris/mvp-1-s3-bucket

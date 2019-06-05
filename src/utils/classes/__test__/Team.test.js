@@ -27,6 +27,6 @@ describe('Generating standings', () => {
     let LeicesterCity = new Team('Leicester City');
     LeicesterCity.setGames(filteredGames);
     LeicesterCity.setStanding();
-    expect(LeicesterCity.standing.goals.for).toEqual(2);
+    expect(LeicesterCity.standings.goals.for).toEqual(2);
   });
 });

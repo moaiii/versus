@@ -2,6 +2,11 @@ import {getThisTeamsStatus} from './games';
 
 const add = require('lodash/add');
 
+const cleanScore = (scoreDirty) => {
+  const parsedScore = parseInt(scoreDirty, 10);
+  return isNaN(parsedScore) ? 0 : parsedScore;
+}
+
 /**
  * @param {string} team
  * @param {Array<Game>} games
@@ -26,8 +31,8 @@ function generateStandings(team= '', games = []) {
     const usStatus = getThisTeamsStatus(team, game);
     const themStatus = usStatus === 'home' ? 'away' : 'home';
 
-    const usScore = parseInt(game[`match_${usStatus}team_score`], 10);
-    const themScore = parseInt(game[`match_${themStatus}team_score`], 10);
+    const usScore = cleanScore(game[`match_${usStatus}team_score`], 10);
+    const themScore = cleanScore(game[`match_${themStatus}team_score`], 10);
 
     // get wins
     if (usScore > themScore) {
@@ -53,12 +58,17 @@ function generateStandings(team= '', games = []) {
       gamesTotal.drawn++;
     }
 
+
+    // console.log({usScore, themScore})
+
     goals.for += usScore;
     goals.against += themScore;
     goals.difference = goals.for - goals.against;
 
     gamesTotal.played++;
   });
+
+  // console.log({goals})
 
   const pointsTotal = points
     .reduce((ac, cu) => ac + cu, 0);
