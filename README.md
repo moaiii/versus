@@ -1,4 +1,4 @@
-# ⚽Versus 📈
+# ⚽  Versus  📈
 
 ## Deployment status
 
