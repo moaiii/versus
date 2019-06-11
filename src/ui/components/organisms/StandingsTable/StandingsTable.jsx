@@ -19,26 +19,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import { formatTableData } from './formatTableData';
 
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
-];
 
 function desc(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -65,11 +47,16 @@ function getSorting(order, orderBy) {
 }
 
 const headRows = [
-  { id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)' },
-  { id: 'calories', numeric: true, disablePadding: false, label: 'Calories' },
-  { id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)' },
-  { id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)' },
-  { id: 'protein', numeric: true, disablePadding: false, label: 'Protein (g)' },
+  { id: 'Position', numeric: false, disablePadding: true, label: 'Position' },
+  { id: 'Club', text: false, disablePadding: true, label: 'Club' },
+  { id: 'Played', text: false, disablePadding: true, label: 'Played' },
+  { id: 'Won', text: false, disablePadding: true, label: 'Won' },
+  { id: 'Drawn', text: false, disablePadding: true, label: 'Drawn' },
+  { id: 'Lost', text: false, disablePadding: true, label: 'Lost' },
+  { id: 'GF', text: false, disablePadding: true, label: 'GF' },
+  { id: 'GA', text: false, disablePadding: true, label: 'GA' },
+  { id: 'GD', text: false, disablePadding: true, label: 'GD' },
+  { id: 'Points', text: false, disablePadding: true, label: 'Points' },
 ];
 
 function EnhancedTableHead(props) {
@@ -145,6 +132,7 @@ const useToolbarStyles = makeStyles(theme => ({
   },
 }));
 
+
 const EnhancedTableToolbar = props => {
   const classes = useToolbarStyles();
   const { numSelected } = props;
@@ -207,7 +195,10 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function EnhancedTable() {
+
+
+export default function EnhancedTable(props) {
+  const tableData = formatTableData(props.table);
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -224,19 +215,19 @@ export default function EnhancedTable() {
 
   function handleSelectAllClick(event) {
     if (event.target.checked) {
-      const newSelecteds = rows.map(n => n.name);
+      const newSelecteds = tableData.map(n => n.name);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   }
 
-  function handleClick(event, name) {
-    const selectedIndex = selected.indexOf(name);
+  function handleClick(event, Club) {
+    const selectedIndex = selected.indexOf(Club);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, Club);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -263,9 +254,9 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   }
 
-  const isSelected = name => selected.indexOf(name) !== -1;
+  const isSelected = Club => selected.indexOf(Club) !== -1;
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+  const emptyRows = rowsPerPage - Math.min(rowsPerPage, tableData.length - page * rowsPerPage);
 
   return (
     <div className={classes.root}>
@@ -283,23 +274,23 @@ export default function EnhancedTable() {
               orderBy={orderBy}
               onSelectAllClick={handleSelectAllClick}
               onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rowCount={tableData.length}
             />
             <TableBody>
-              {stableSort(rows, getSorting(order, orderBy))
+              {stableSort(tableData, getSorting(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
+                  const isItemSelected = isSelected(row.Club);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={event => handleClick(event, row.name)}
+                      onClick={event => handleClick(event, row.Club)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row.Club}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -309,12 +300,17 @@ export default function EnhancedTable() {
                         />
                       </TableCell>
                       <TableCell component="th" id={labelId} scope="row" padding="none">
-                        {row.name}
+                        {row.Position}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="left">{row.Club}</TableCell>
+                      <TableCell align="left">{row.Played}</TableCell>
+                      <TableCell align="left">{row.Won}</TableCell>
+                      <TableCell align="left">{row.Drawn}</TableCell>
+                      <TableCell align="left">{row.Lost}</TableCell>
+                      <TableCell align="left">{row.GF}</TableCell>
+                      <TableCell align="left">{row.GA}</TableCell>
+                      <TableCell align="left">{row.GD}</TableCell>
+                      <TableCell align="left">{row.Points}</TableCell>
                     </TableRow>
                   );
                 })}
@@ -327,9 +323,9 @@ export default function EnhancedTable() {
           </Table>
         </div>
         <TablePagination
-          rowsPerPageOptions={[5, 10, 25]}
+          rowsPerPageOptions={[tableData.length, tableData.length / 2]}
           component="div"
-          count={rows.length}
+          count={tableData.length}
           rowsPerPage={rowsPerPage}
           page={page}
           backIconButtonProps={{

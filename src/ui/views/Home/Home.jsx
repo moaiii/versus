@@ -2,6 +2,8 @@
 import * as React from "react";
 import { BasicSelector } from '../../components/atoms';
 import './Home.scss'
+import StandingsTable from '../../components/organisms/StandingsTable';
+
 
 export default class Home extends React.Component {
   constructor() {
@@ -95,7 +97,7 @@ export default class Home extends React.Component {
           </div>
           <div className="games">
             <h2>4. League Table</h2>
-            {_leagueTablePOC}
+            <StandingsTable />
           </div>
         </div>
       </div>
