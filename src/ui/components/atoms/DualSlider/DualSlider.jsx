@@ -2,6 +2,7 @@
 import * as React from "react";
 import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
+import './DualSlider.scss';
 
 const DualSlider = ({props}) => {
   const {
