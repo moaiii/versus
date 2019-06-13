@@ -12,11 +12,10 @@ function getThisTeamsGames(team = '') {
   return (games) => {
     return games
       .filter((game) =>
-        game.match_hometeam_name === team ||
-        game.match_awayteam_name === team);
+        game.match_hometeam_name.toLowerCase() === team.toLowerCase() ||
+        game.match_awayteam_name.toLowerCase() === team.toLowerCase());
   };
 }
-
 
 /**
  * @param {Array<string>} teamExclusions
@@ -32,25 +31,20 @@ function excudeOppositionTeams(teamExclusions = []) {
   };
 }
 
-
 /**
  * @param {Array<string>} teamInclusions
  * @return {Function(Array<Game>)} curry
  */
 function includeOppositionTeams(teamInclusions = []) {
   return (games) => {
-    if(teamInclusions.length === 0 || !teamInclusions) {
-      return games;
-    }
-      return games
-        .filter((game) =>
-          teamInclusions.includes(game.match_hometeam_name) &&
-          teamInclusions.includes(game.match_awayteam_name)
-        );
+    if(teamInclusions.length === 0) return games
 
+    return games.filter((game) =>
+      teamInclusions.includes(game.match_hometeam_name.toLowerCase()) &&
+      teamInclusions.includes(game.match_awayteam_name.toLowerCase())
+    );
   };
 }
-
 
 /**
  * @param timeWindow the minute range from 0 to 90+
@@ -70,7 +64,6 @@ function filterOutGoals(timeWindow = null) {
             parseInt(gs.time, 10) <= timeWindow.to
           )
         }));
-
   };
 }
 
@@ -180,7 +173,6 @@ function getThisTeamsStatus(team= '', game = null) {
   }
 }
 
-
 /**
  * @example
  * const filteredGames = filterGames({
@@ -198,7 +190,7 @@ function filterGames({
   teamInclusions = [],
   timeWindow = {from: 0, to: 90},
   games = [],
-  excludedPlayers = []
+  // excludedPlayers = []
 }){
   return compose(
     // excludeGamesThesePlayersStart(excludedPlayers),

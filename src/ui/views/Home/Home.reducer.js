@@ -127,7 +127,6 @@ export const datesReducer = (state = datesInitialState, action) => {
   }
 };
 
-
 const countriesInitialState = {
   value: [],
   selected: null,

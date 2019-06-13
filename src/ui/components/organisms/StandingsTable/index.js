@@ -6,19 +6,16 @@ import { connect } from "react-redux";
 import * as actions from './StandingsTable.actions';
 
 function mapStoreToProps(store) {
-
-
   return {
-    // countries: store.countriesReducer.value,
-    // leagues: store.leaguesReducer.value,
-    // seasons: store.datesReducer.seasons,
-    // games: store.gamesReducer.games,
     table: store.dataReducer.table,
   }
 }
 
 function mapDispatchToProps (dispatch) {
-  return {}
+  return {
+    handleDeleteTeams: () => dispatch(actions.removeTeams()),
+    handleSelectTeam: (teams) => dispatch(actions.selectTeam(teams)),
+  }
 }
 
 export default connect(

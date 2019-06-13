@@ -13,7 +13,6 @@ describe('getAllTeamsAndPlayers()', () => {
      */
     expect(groupedTeamsandPlayers).toHaveLength(8);
   });
-
   it('each team class should have min 11 players', () => {
     groupedTeamsandPlayers.forEach(teamClass => {
       expect([...teamClass.squad].length).toBeGreaterThanOrEqual(11);
