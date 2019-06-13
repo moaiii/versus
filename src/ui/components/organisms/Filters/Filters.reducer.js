@@ -1,14 +1,25 @@
 // @flow
 
-type State = {};
+let initialState = {
+  gameTimeWindow: {
+    from: 0,
+    to: 90,
+  }
+};
 
-let initialState = {};
-
-export default (state: State = initialState, action): State => {
+export default (state = initialState, action) => {
   switch (action.type) {
-    case "[Filters] AN_EXAMPLE_ACTION_TYPE": {
+    case "[FILTERS] SET": {
+      const { key, value } = action.payload;
       return {
         ...state,
+        [`${key}`]: value
+      };
+    }
+
+    case "[FILTERS] RESET": {
+      return {
+        ...initialState
       };
     }
 

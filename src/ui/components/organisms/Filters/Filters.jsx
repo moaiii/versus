@@ -1,29 +1,36 @@
 // @flow
 import * as React from "react";
+import {
+  GameWindow
+} from '../../molecules';
 
-type Props = {};
-type State = {};
 
-export default class Filters extends React.Component<Props, State> {
+export default class Filters extends React.Component {
   constructor() {
     super();
 
     this.state = {};
   }
 
-  componentDidMount(): void {}
+  componentDidMount() {}
 
-  shouldComponentUpdate(nextProps: Props, nextState: State): boolean {
+  shouldComponentUpdate(nextProps, nextState) {
     return true;
   };
 
-  render(): React.Element<"div"> {
-    
+  render() {
     const { } = this.props;
     const { } = this.state;
 
     return (
       <div className={`Filters`}>
+        <h1>Filters</h1>
+        <GameWindow
+          onChange={this.props.setFilter}
+        />
+        <div className={`Filters__reset`}>
+          <button onClick={this.props.resetFilter}>Reset</button>
+        </div>
       </div>
     );
   }

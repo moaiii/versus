@@ -2,7 +2,10 @@
 import * as React from "react";
 import { BasicSelector } from '../../components/atoms';
 import './Home.scss'
-import StandingsTable from '../../components/organisms/StandingsTable';
+import {
+  StandingsTable,
+  Filters
+} from '../../components/organisms';
 
 
 export default class Home extends React.Component {
@@ -97,6 +100,7 @@ export default class Home extends React.Component {
           </div>
           <div className="games">
             <h2>4. League Table</h2>
+            <Filters />
             <StandingsTable />
           </div>
         </div>
