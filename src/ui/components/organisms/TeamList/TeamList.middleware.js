@@ -1,5 +1,11 @@
 // @flow
-import * as actions from './TeamList.action';
+import { setTeams } from './TeamList.action';
+import { generateTable } from '../StandingsTable/StandingsTable.actions';
+import {
+  getAllTeamsAndPlayers,
+  getThisTeamsGames,
+  generateStandings
+ } from '../../../../utils/functions';
 
 export default {
   /**
@@ -23,7 +29,7 @@ export default {
           }
         });
 
-        store.dispatch(actions.setTeams(teamsWithData));
+        store.dispatch(setTeams(teamsWithData));
 
     } catch (error) {
       console.error(`[ERROR] generating the team objects\n`, error);
@@ -36,7 +42,7 @@ export default {
    */
   '[TEAM_LIST] SET_TEAMS': async (store, next, action) => {
     try {
-      store.dispatch(actions.generateTable());
+      store.dispatch(generateTable());
     } catch (error) {
       console.error(`[ERROR] setting teams games\n`, error);
     }

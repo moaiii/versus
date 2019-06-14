@@ -7,25 +7,25 @@ import * as actions from './Home.actions';
 
 function mapStoreToProps(store) {
   return {
-    countries: store.countriesReducer.value,
-    leagues: store.leaguesReducer.value,
-    seasons: store.datesReducer.seasons,
-    games: store.gamesReducer.games,
-    table: store.dataReducer.table,
+    // countries: store.countriesReducer.value,
+    // leagues: store.leaguesReducer.value,
+    // seasons: store.datesReducer.seasons,
+    // games: store.gamesReducer.games,
+    // table: store.dataReducer.table,
   }
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    getSeasons: () => dispatch(actions.getSeasons()),
-    getCountries: () => dispatch(actions.getCountries.submit()),
-    setSelectedCountry: country => dispatch(actions.setSelectedCountry(country)),
-    setSelectedLeague: league => dispatch(actions.setSelectedLeague(league)),
-    setDateSelection: dates => dispatch(actions.setDateSelection({
-        dates,
-        middlewareMode: "last"
-      })
-    ),
+    // getSeasons: () => dispatch(actions.getSeasons()),
+    // getCountries: () => dispatch(actions.getCountries.submit()),
+    // setSelectedCountry: country => dispatch(actions.setSelectedCountry(country)),
+    // setSelectedLeague: league => dispatch(actions.setSelectedLeague(league)),
+    // setDateSelection: dates => dispatch(actions.setDateSelection({
+    //     dates,
+    //     middlewareMode: "last"
+    //   })
+    // ),
   }
 }
 

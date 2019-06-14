@@ -12,7 +12,7 @@ import {
 
 function mapStoreToProps( store ) {
   return {
-    seasons: store.datesReducer.seasons,
+    seasons: store.DateSelectorReducer.seasons,
   }
 }
 

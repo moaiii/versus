@@ -1,10 +1,29 @@
-let initialState = {};
+const dataInitialState = {
+  teams: {
+    displayed: [],
+    raw: []
+  },
+};
 
-export default (state = initialState, action) => {
+export default (state = dataInitialState, action) => {
   switch (action.type) {
-    case "[TeamList] AN_EXAMPLE_ACTION_TYPE": {
+    case "[DATA] SET_TEAMS": {
       return {
         ...state,
+        teams: {
+          ...state.teams,
+          raw: action.payload
+        }
+      };
+    }
+
+    case "[DATA] SET_DISPLAYED_TEAMS": {
+      return {
+        ...state,
+        teams: {
+          ...state.teams,
+          displayed: action.payload
+        }
       };
     }
 

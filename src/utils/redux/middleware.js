@@ -5,7 +5,7 @@ import { FiltersMiddleware } from '../../ui/components/organisms/Filters';
 import { GamesListMiddleware } from '../../ui/components/organisms/GamesList';
 import { RootSelectorsMiddleware } from '../../ui/components/organisms/RootSelectors';
 import { StandingsTableMiddleware } from '../../ui/components/organisms/StandingsTable';
-import { TeamListMiddleware } from '../../ui/components/organisms/TeamsList';
+import { TeamListMiddleware } from '../../ui/components/organisms/TeamList';
 
 
 const middlewares = {

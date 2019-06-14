@@ -17,8 +17,8 @@ export default class Home extends React.Component {
   }
 
   componentDidMount(){
-    this.props.getSeasons();
-    this.props.getCountries();
+    // this.props.getSeasons();
+    // this.props.getCountries();
   }
 
   shouldComponentUpdate(nextProps, nextState){
@@ -37,29 +37,6 @@ export default class Home extends React.Component {
       games
     } = this.props;
 
-    const _countriesSelector =
-      <BasicSelector
-        options={countries}
-        pickString={'country_name'}
-        handleChangeCallback={setSelectedCountry}
-        label={'Country'}
-      />;
-
-    const _leaguesSelector =
-      <BasicSelector
-        options={leagues}
-        pickString={'league_name'}
-        handleChangeCallback={setSelectedLeague}
-        label={'Select league'}
-      />;
-
-    const _seasonsSelector =
-      <BasicSelector
-        options={seasons}
-        pickString={'start.year'}
-        handleChangeCallback={setDateSelection}
-        label={'Select season'}
-      />;
 
     return (
       <div className={`Home`}>

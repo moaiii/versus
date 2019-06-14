@@ -1,9 +1,11 @@
-let initialState = {};
+let initialState = {
+  leagues: []
+};
 
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "[LeagueSelector] AN_EXAMPLE_ACTION_TYPE": {
+    case "[LEAGUES] SET_SELECTED_LEAGUE": {
       return {
         ...state,
       };

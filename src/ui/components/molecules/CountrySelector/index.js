@@ -11,7 +11,7 @@ import {
 
 function mapStoreToProps( store ) {
   return {
-    countries: store.countriesReducer.value,
+    countries: store.CountrySelectorReducer.value,
   }
 }
 

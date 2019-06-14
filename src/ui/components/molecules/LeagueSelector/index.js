@@ -13,7 +13,7 @@ import {
 
 function mapStoreToProps( store ) {
   return {
-    leagues: store.leaguesReducer.value,
+    leagues: store.LeagueSelectorReducer.leagues,
   }
 }
 
