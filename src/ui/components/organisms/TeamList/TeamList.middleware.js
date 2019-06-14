@@ -29,7 +29,7 @@ export default {
           }
         });
 
-        store.dispatch(setTeams(teamsWithData));
+      store.dispatch(setTeams(teamsWithData));
 
     } catch (error) {
       console.error(`[ERROR] generating the team objects\n`, error);

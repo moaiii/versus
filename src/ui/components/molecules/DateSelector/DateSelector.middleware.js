@@ -19,7 +19,8 @@ export default {
 
     action.payload = _dates;
 
-    const league_id = store.getState().leaguesReducer.selected.league_id;
+    const { LeagueSelectorReducer } = store.getState();
+    const { selected: { league_id } } = LeagueSelectorReducer;
 
     store.dispatch(getGames.submit({
       req: {..._dates, league_id},

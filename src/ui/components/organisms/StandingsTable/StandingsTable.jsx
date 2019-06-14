@@ -198,7 +198,7 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function EnhancedTable(props) {
-  const tableData = formatTableData(props.table.displayed);
+  const tableData = formatTableData(props.table);
   const classes = useStyles();
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');

@@ -38,22 +38,24 @@ function BasicSelector({options, pickString, label, handleChangeCallback}) {
   }
 
   const _options = options
-    .map(option => {
-      return {
-        displayValue: get(option, pickString),
-        option
-      }
-    })
-    .map(({displayValue, option}, i) => {
-      return (
-        <MenuItem
-          index={i}
-          key={displayValue}
-          value={option}>
-          {displayValue}
-        </MenuItem>
-      );
-    });
+    ? options
+        .map(option => {
+          return {
+            displayValue: get(option, pickString),
+            option
+          }
+        })
+        .map(({displayValue, option}, i) => {
+          return (
+            <MenuItem
+              index={i}
+              key={displayValue}
+              value={option}>
+              {displayValue}
+            </MenuItem>
+          );
+        })
+    : [];
 
   return (
     <form autoComplete="off">
@@ -77,4 +79,4 @@ function BasicSelector({options, pickString, label, handleChangeCallback}) {
   );
 }
 
-export default BasicSelector;{}
+export default BasicSelector;

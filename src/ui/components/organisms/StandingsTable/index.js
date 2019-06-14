@@ -10,7 +10,7 @@ import StandingsTableReducer from './StandingsTable.reducer';
 
 function mapStoreToProps(store) {
   return {
-    table: store.StandingsTableReducer.table,
+    table: store.StandingsTableReducer.table.displayed,
   }
 }
 

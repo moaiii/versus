@@ -7,7 +7,7 @@ const dataInitialState = {
 
 export default (state = dataInitialState, action) => {
   switch (action.type) {
-    case "[DATA] SET_TEAMS": {
+    case "[TEAM_LIST] SET_TEAMS": {
       return {
         ...state,
         teams: {
@@ -17,7 +17,7 @@ export default (state = dataInitialState, action) => {
       };
     }
 
-    case "[DATA] SET_DISPLAYED_TEAMS": {
+    case "[TEAM_LIST] SET_DISPLAYED_TEAMS": {
       return {
         ...state,
         teams: {

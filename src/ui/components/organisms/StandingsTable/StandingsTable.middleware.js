@@ -14,14 +14,10 @@ export default {
 
   '[STANDINGS_TABLE] GENERATE_TABLE': async (store, next, action) => {
     try {
-      const { dataReducer: { teams } } = store.getState();
+      const { TeamListReducer: { teams } } = store.getState();
 
       const tableSorted = sortBy(teams.raw, el => el.standings.pointsTotal).reverse();
 
-      // unsorted table goes to raw
-      store.dispatch(setDisplayedTable(tableSorted));
-
-      // sorted table goes to display
       store.dispatch(setDisplayedTable(tableSorted));
 
     } catch (error) {
