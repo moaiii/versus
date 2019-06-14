@@ -1,20 +1,22 @@
-import {
-  countriesMiddleware,
-  seasonsMiddleware,
-  gamesMiddleware,
-  leaguesMiddleware,
-  dataMiddleware
-} from '../../ui/views/Home/Home.middleware';
-import filtersMiddleware from '../../ui/components/organisms/Filters/Filters.middleware';
+import { CountrySelectorMiddleware } from '../../ui/components/molecules/CountrySelector';
+import { DateSelectorMiddleware } from '../../ui/components/molecules/DateSelector';
+import { LeagueSelectorMiddleware } from '../../ui/components/molecules/LeagueSelector';
+import { FiltersMiddleware } from '../../ui/components/organisms/Filters';
+import { GamesListMiddleware } from '../../ui/components/organisms/GamesList';
+import { RootSelectorsMiddleware } from '../../ui/components/organisms/RootSelectors';
+import { StandingsTableMiddleware } from '../../ui/components/organisms/StandingsTable';
+import { TeamListMiddleware } from '../../ui/components/organisms/TeamsList';
 
 
 const middlewares = {
-  ...countriesMiddleware,
-  ...seasonsMiddleware,
-  ...gamesMiddleware,
-  ...leaguesMiddleware,
-  ...dataMiddleware,
-  ...filtersMiddleware
+  ...CountrySelectorMiddleware,
+  ...DateSelectorMiddleware,
+  ...LeagueSelectorMiddleware,
+  ...FiltersMiddleware,
+  ...GamesListMiddleware,
+  ...RootSelectorsMiddleware,
+  ...StandingsTableMiddleware,
+  ...TeamListMiddleware
 };
 
 

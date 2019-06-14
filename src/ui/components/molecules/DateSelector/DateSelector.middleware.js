@@ -1,16 +1,11 @@
-// @Flow
-import * as actions from './Home.actions'
-import fp from 'lodash/fp';
-import {networkRequest} from '../../../../utils/network';
-import endpoints from '../../../../utils/enums/endpoints';
 import seasonDates from '../../../../utils/enums/season-dates.json';
-import { getAllTeamsAndPlayers, getThisTeamsGames, generateStandings } from '../../../../utils/functions';
-import { sortBy } from 'lodash';
+import { setSeasons } from './DateSelector.action';
+import { getGames } from '../../organisms/GamesList/GamesList.action';
 
 
 export default {
   '[DATES] GET_SEASONS': async (store, next, action) => {
-    store.dispatch(actions.setSeasons(seasonDates));
+    store.dispatch(setSeasons(seasonDates));
   },
 
 
@@ -26,7 +21,7 @@ export default {
 
     const league_id = store.getState().leaguesReducer.selected.league_id;
 
-    store.dispatch(actions.getGames.submit({
+    store.dispatch(getGames.submit({
       req: {..._dates, league_id},
       middlewareMode: "last"
     }));

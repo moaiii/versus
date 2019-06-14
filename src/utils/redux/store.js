@@ -2,14 +2,16 @@
 import { applyMiddleware, compose, createStore, combineReducers } from "redux";
 import { createLogger } from "redux-logger";
 import middlewareRouter from './middleware';
-import {
-  leaguesReducer,
-  gamesReducer,
-  datesReducer,
-  countriesReducer,
-  dataReducer,
-} from '../../ui/views/Home/Home.reducer';
-import filtersReducer from '../../ui/components/organisms/Filters/Filters.middleware';
+
+// import reducer
+import { CountrySelectorReducer } from '../../ui/components/molecules/CountrySelector';
+import { DateSelectorReducer } from '../../ui/components/molecules/DateSelector';
+import { LeagueSelectorReducer } from '../../ui/components/molecules/LeagueSelector';
+import { FiltersReducer } from '../../ui/components/organisms/Filters';
+import { GamesListReducer } from '../../ui/components/organisms/GamesList';
+import { RootSelectorsReducer } from '../../ui/components/organisms/RootSelectors';
+import { StandingsTableReducer } from '../../ui/components/organisms/StandingsTable';
+import { TeamListReducer } from '../../ui/components/organisms/TeamList';
 
 const logger = createLogger({
   collapsed: true, diff: true
@@ -21,14 +23,15 @@ const customMiddleWare = store => next => action => {
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-// Combine Reducers
 const reducers = combineReducers({
-  leaguesReducer,
-  gamesReducer,
-  datesReducer,
-  countriesReducer,
-  dataReducer,
-  filtersReducer
+  CountrySelectorReducer,
+  DateSelectorReducer,
+  LeagueSelectorReducer,
+  FiltersReducer,
+  GamesListReducer,
+  RootSelectorsReducer,
+  StandingsTableReducer,
+  TeamListReducer,
 });
 
 

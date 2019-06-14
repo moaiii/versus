@@ -1,8 +1,8 @@
 // @Flow
 import * as actions from './Home.actions'
 import fp from 'lodash/fp';
-import {networkRequest} from '../../../utils/network';
-import endpoints from '../../../utils/enums/endpoints';
+import {networkRequest} from '../../../../utils/network';
+import endpoints from '../../../../utils/enums/endpoints';
 
 
 export default {

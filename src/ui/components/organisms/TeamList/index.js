@@ -1,7 +1,9 @@
 // @flow
 import {connect} from "react-redux";
-import store from "../../../db/store";
+import {store} from "../../../../utils/redux";
 import TeamList from "./TeamList.jsx";
+import TeamListMiddleware from './TeamList.middleware';
+import TeamListReducer from './TeamList.reducer';
 import {
   generateTeamObjects,
   setTeams,
@@ -25,3 +27,8 @@ export default connect(
   mapStoreToProps,
   mapDispatchToProps
 )(TeamList);
+
+export {
+  TeamListMiddleware,
+  TeamListReducer
+}

@@ -1,5 +1,5 @@
 import * as React from "react";
-
+import { Game } from '../../molecules';
 
 export default class GamesList extends React.Component {
   constructor() {
