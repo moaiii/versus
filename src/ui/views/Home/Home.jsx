@@ -1,12 +1,11 @@
 // @flow
 import * as React from "react";
-import { BasicSelector } from '../../components/atoms';
-import './Home.scss'
 import {
   StandingsTable,
   RootSelectors,
   Filters
 } from '../../components/organisms';
+import './Home.scss'
 
 
 export default class Home extends React.Component {
