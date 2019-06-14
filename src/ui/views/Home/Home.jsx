@@ -60,29 +60,6 @@ export default class Home extends React.Component {
         label={'Select season'}
       />;
 
-    const _leagueTablePOC =
-    <div className="league-table">
-      {
-        table.map(team => (<p>{team.name}, p({team.standings.gamesTotal.played}), pts({team.standings.pointsTotal})</p>))
-      }
-    </div>
-
-
-    const _gamesList = games.map((game, i) => {
-      const {
-        match_hometeam_name,
-        match_hometeam_score,
-        match_awayteam_name,
-        match_awayteam_score,
-      } = game;
-
-      return (
-        <p key={game.match_id}>
-          {`${match_hometeam_name} ${match_hometeam_score} - ${match_awayteam_name} ${match_awayteam_score}`}
-        </p>
-      )
-    })
-
     return (
       <div className={`Home`}>
         <div className="inner-container">
@@ -100,8 +77,8 @@ export default class Home extends React.Component {
           </div>
           <div className="games">
             <h2>4. League Table</h2>
-            <Filters />
             <StandingsTable />
+            <Filters />
           </div>
         </div>
       </div>

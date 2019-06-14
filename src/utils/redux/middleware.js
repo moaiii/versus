@@ -4,7 +4,8 @@ import {
   gamesMiddleware,
   leaguesMiddleware,
   dataMiddleware
-} from '../../ui/views/Home/Home.middleware'
+} from '../../ui/views/Home/Home.middleware';
+import filtersMiddleware from '../../ui/components/organisms/Filters/Filters.middleware';
 
 
 const middlewares = {
@@ -13,6 +14,7 @@ const middlewares = {
   ...gamesMiddleware,
   ...leaguesMiddleware,
   ...dataMiddleware,
+  ...filtersMiddleware
 };
 
 

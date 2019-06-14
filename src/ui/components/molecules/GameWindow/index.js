@@ -1,8 +1,7 @@
 // @flow
-import {connect} from "react-redux";
-import store from "../../../db/store";
-import GameWindow from "./GameWindow.jsx";
-import * as action from "./GameWindow.action";
+import {connect} from 'react-redux';
+import { store } from '../../../../utils/redux';
+import GameWindow from './GameWindow.jsx';
 
 function mapStoreToProps( store ) {
   return {

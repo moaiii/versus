@@ -1,8 +1,8 @@
 // @flow
-import {connect} from "react-redux";
-import store from "../../../db/store";
-import Filters from "./Filters.jsx";
-import * as action from "./Filters.action";
+import {connect} from 'react-redux';
+import { store } from '../../../../utils/redux';
+import Filters from './Filters.jsx';
+import * as action from './Filters.action';
 
 function mapStoreToProps(store) {
   return {

@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import DualSlider from '../../atoms';
+import { DualSlider } from '../../atoms';
 import './GameWindow.scss';
 
 export default class GameWindow extends React.Component {
@@ -17,8 +17,12 @@ export default class GameWindow extends React.Component {
   };
 
   handleTimeWindowChange = (e) => {
-    console.log(e);
-    this.props.setTime(e);
+    const [to, from] = e;
+
+    this.props.onChange({
+      key: 'timeWindow',
+      value: { to, from }
+    });
   }
 
   tipFormatter = (value) => {
@@ -33,11 +37,12 @@ export default class GameWindow extends React.Component {
       <div className={`GameWindow`}>
         <h2>Game time window</h2>
         <DualSlider
-          onAfterChange={this.handleTimeWindowChange}
+          onChange={this.handleTimeWindowChange}
           className={`GameWindow__dualslider`}
+          marks={{ 0: 0, 45: 45, 90: 90 }}
           min={0}
-          max={110}
-          defaultValue={[0, 90]}
+          max={100}
+          defaultValues={[0, 90]}
           tipFormatter={this.tipFormatter} />
       </div>
     );

@@ -178,8 +178,14 @@ export const countriesReducer = (state = countriesInitialState, action) => {
 
 
 const dataInitialState = {
-  teams: [],
-  table: [],
+  teams: {
+    displayed: [],
+    raw: []
+  },
+  table: {
+    displayed: [],
+    raw: []
+  },
 };
 
 export const dataReducer = (state = dataInitialState, action) => {
@@ -187,13 +193,37 @@ export const dataReducer = (state = dataInitialState, action) => {
     case "[DATA] SET_TEAMS": {
       return {
         ...state,
-        teams: action.payload
+        teams: {
+          ...state.teams,
+          raw: action.payload
+        }
       };
     }
+
+    case "[DATA] SET_DISPLAYED_TEAMS": {
+      return {
+        ...state,
+        teams: {
+          ...state.teams,
+          displayed: action.payload
+        }
+      };
+    }
+
     case "[DATA] SET_TABLE": {
       return {
         ...state,
         table: action.payload
+      };
+    }
+
+    case "[DATA] SET_DISPLAYED_TABLE": {
+      return {
+        ...state,
+        table: {
+          ...state.table,
+          displayed: action.payload
+        }
       };
     }
 

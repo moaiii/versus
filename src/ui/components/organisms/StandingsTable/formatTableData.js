@@ -1,10 +1,4 @@
-
-function createData(Position, Club, Played, Won, Drawn, Lost, GF, GA, GD, Points) {
-  return { Position, Club, Played, Won, Drawn, Lost, GF, GA, GD, Points };
-}
-
-
-const formatTableData = (data) => {
+const formatTableData = (data = []) => {
   return data
     .map((el, index) => {
       const {standings} = el;

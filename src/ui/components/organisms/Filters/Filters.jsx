@@ -3,7 +3,7 @@ import * as React from "react";
 import {
   GameWindow
 } from '../../molecules';
-import ''
+import './Filters.scss';
 
 
 export default class Filters extends React.Component {
@@ -20,8 +20,8 @@ export default class Filters extends React.Component {
   };
 
   render() {
-    const { } = this.props;
-    const { } = this.state;
+    // const { } = this.props;
+    // const { } = this.state;
 
     return (
       <div className={`Filters`}>

@@ -7,8 +7,9 @@ import {
   gamesReducer,
   datesReducer,
   countriesReducer,
-  dataReducer
+  dataReducer,
 } from '../../ui/views/Home/Home.reducer';
+import filtersReducer from '../../ui/components/organisms/Filters/Filters.middleware';
 
 const logger = createLogger({
   collapsed: true, diff: true
@@ -26,7 +27,8 @@ const reducers = combineReducers({
   gamesReducer,
   datesReducer,
   countriesReducer,
-  dataReducer
+  dataReducer,
+  filtersReducer
 });
 
 

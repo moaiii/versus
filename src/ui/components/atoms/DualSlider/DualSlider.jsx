@@ -4,11 +4,12 @@ import Slider, { Range } from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import './DualSlider.scss';
 
-const DualSlider = ({props}) => {
+const DualSlider = (props) => {
   const {
     className,
     min,
     max,
+    marks,
     defaultValues,
     tipFormatter, // function
     onChange
@@ -16,9 +17,10 @@ const DualSlider = ({props}) => {
 
   return(
     <div className={`DualSlider`}>
-      <div style={wrapperStyle}>
+      <div style={null}>
         <Range
           onAfterChange={onChange}
+          marks={marks}
           className={className}
           min={min}
           max={max}
