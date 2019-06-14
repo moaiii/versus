@@ -1,5 +1,3 @@
-// @flow
-
 let initialState = {
   gameTimeWindow: {
     from: 0,

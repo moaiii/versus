@@ -2,9 +2,12 @@
 import {connect} from 'react-redux';
 import { store } from '../../../../utils/redux';
 import Filters from './Filters.jsx';
-import * as action from './Filters.action';
 import FiltersReducer from './Filters.reducer';
 import FiltersMiddleware from './Filters.middleware';
+import {
+  setFilter,
+  resetFilter
+} from './Filters.action';
 
 
 function mapStoreToProps(store) {
@@ -15,8 +18,8 @@ function mapStoreToProps(store) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setFilter: (config) => dispatch(action.setFilter(config)),
-    resetFilter: () => dispatch(action.resetFilter()),
+    setFilter: (config) => dispatch(setFilter(config)),
+    resetFilter: () => dispatch(resetFilter()),
   }
 }
 
@@ -27,6 +30,6 @@ export default connect(
 )(Filters);
 
 export {
+  FiltersMiddleware,
   FiltersReducer,
-  FiltersMiddleware
 }
