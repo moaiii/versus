@@ -11,6 +11,7 @@
     "lodash": "^4.17.11",
     "lodash.get": "^4.4.2",
     "node-sass": "^4.12.0",
+    "rc-slider": "^8.6.13",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
@@ -24,7 +25,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "create-ui": "rcr"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -37,7 +39,8 @@
   ],
   "devDependencies": {
     "browserify-glob": "^0.2.0",
-    "husky": "^2.4.0"
+    "husky": "^2.4.0",
+    "moaiii-react-create-component": "^1.0.10"
   },
   "husky": {
     "hooks": {
