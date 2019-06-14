@@ -45,3 +45,4 @@ export const setTable
 
 export const setDisplayedTable
   = actionCreator("[DATA] SET_DISPLAYED_TABLE");
+

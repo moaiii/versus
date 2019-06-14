@@ -7,8 +7,8 @@ import seasonDates from '../../../utils/enums/season-dates.json';
 import { getAllTeamsAndPlayers, getThisTeamsGames, generateStandings } from '../../../utils/functions';
 import { sortBy } from 'lodash';
 
-const dataMiddleware = {
 
+const dataMiddleware = {
   /**
    * @dispatches setTeams
    */
@@ -37,6 +37,7 @@ const dataMiddleware = {
     }
   },
 
+
   /**
    * @dispatches generateTable
    */
@@ -51,8 +52,14 @@ const dataMiddleware = {
   '[DATA] GENERATE_TABLE': async (store, next, action) => {
     try {
       const { dataReducer: { teams } } = store.getState();
-      const tableSorted = sortBy(teams, el => el.standings.pointsTotal).reverse();
-      store.dispatch(actions.setTable(tableSorted));
+      const tableSorted = sortBy(teams.raw, el => el.standings.pointsTotal).reverse();
+
+      // unsorted table goes to raw
+      store.dispatch(actions.setDisplayedTable(tableSorted));
+
+
+      // sorted table goes to display
+      store.dispatch(actions.setDisplayedTable(tableSorted));
 
     } catch (error) {
       console.error(`[ERROR] setting teams games\n`, error);

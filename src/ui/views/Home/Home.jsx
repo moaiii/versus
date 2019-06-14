@@ -4,6 +4,7 @@ import { BasicSelector } from '../../components/atoms';
 import './Home.scss'
 import {
   StandingsTable,
+  RootSelectors,
   Filters
 } from '../../components/organisms';
 
@@ -63,17 +64,8 @@ export default class Home extends React.Component {
     return (
       <div className={`Home`}>
         <div className="inner-container">
-          <div className="countries">
-            <h2>1. Countries</h2>
-            {_countriesSelector}
-          </div>
-          <div className="leagues">
-            <h2>2. Leagues</h2>
-            {_leaguesSelector}
-          </div>
-          <div className="seasons">
-            <h2>3. Seasons</h2>
-            {_seasonsSelector}
+          <div className="selectors">
+            <RootSelectors />
           </div>
           <div className="games">
             <h2>4. League Table</h2>

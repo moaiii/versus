@@ -7,6 +7,7 @@ const leaguesInitialState = {
   error: false
 };
 
+
 export const leaguesReducer = (state = leaguesInitialState, action) => {
   switch (action.type) {
     case "[LEAGUES] SET_SELECTED_LEAGUE": {
