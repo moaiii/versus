@@ -9,6 +9,7 @@ import {
   countriesReducer,
   dataReducer
 } from '../../ui/views/Home/Home.reducer';
+import { standingsReducer } from '../../ui/components/organisms/StandingsTable/StandingsTable.reducer';
 
 const logger = createLogger({
   collapsed: true, diff: true
@@ -26,7 +27,8 @@ const reducers = combineReducers({
   gamesReducer,
   datesReducer,
   countriesReducer,
-  dataReducer
+  dataReducer,
+  standingsReducer
 });
 
 

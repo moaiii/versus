@@ -3,9 +3,12 @@ import {
   seasonsMiddleware,
   gamesMiddleware,
   leaguesMiddleware,
-  dataMiddleware
+  dataMiddleware,
 } from '../../ui/views/Home/Home.middleware'
 
+import {
+  standingsMiddleware
+} from '../../ui/components/organisms/StandingsTable/StandingsTable.middleware';
 
 const middlewares = {
   ...countriesMiddleware,
@@ -13,6 +16,7 @@ const middlewares = {
   ...gamesMiddleware,
   ...leaguesMiddleware,
   ...dataMiddleware,
+  ...standingsMiddleware,
 };
 
 

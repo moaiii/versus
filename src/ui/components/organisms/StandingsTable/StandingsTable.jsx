@@ -157,7 +157,9 @@ const EnhancedTableToolbar = props => {
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
+          <Tooltip
+            title="Delete"
+            onClick={() => props.passedProps.handleDeleteTeams()}>
             <IconButton aria-label="Delete">
               <DeleteIcon />
             </IconButton>
@@ -239,6 +241,9 @@ export default function EnhancedTable(props) {
       );
     }
 
+console.log({newSelected});
+    props.handleSelectTeam(newSelected)
+
     setSelected(newSelected);
   }
 
@@ -261,7 +266,9 @@ export default function EnhancedTable(props) {
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar
+          passedProps={props}
+          numSelected={selected.length} />
         <div className={classes.tableWrapper}>
           <Table
             className={classes.table}

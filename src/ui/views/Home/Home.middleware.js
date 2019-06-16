@@ -8,19 +8,20 @@ import { getAllTeamsAndPlayers, getThisTeamsGames, generateStandings } from '../
 import { sortBy } from 'lodash';
 
 const dataMiddleware = {
-
   /**
    * @dispatches setTeams
    */
   '[DATA] GENERATE_TEAM_OBJECTS': async (store, next, action) => {
     try {
-      const allTeams = getAllTeamsAndPlayers(action.payload);
+      const games = action.payload;
+
+      const allTeams = getAllTeamsAndPlayers(games);
 
       const teamsWithData = allTeams
         .map(team => {
           return {
             ...team,
-            games: getThisTeamsGames(team.name)(action.payload)
+            games: getThisTeamsGames(team.name)(games)
           }
         })
         .map(team => {
