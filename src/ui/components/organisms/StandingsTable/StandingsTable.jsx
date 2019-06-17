@@ -157,7 +157,9 @@ const EnhancedTableToolbar = props => {
       <div className={classes.spacer} />
       <div className={classes.actions}>
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
+          <Tooltip
+            title="Delete"
+            onClick={() => props.passedProps.handleDeleteTeams()}>
             <IconButton aria-label="Delete">
               <DeleteIcon />
             </IconButton>

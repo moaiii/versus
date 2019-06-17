@@ -15,7 +15,12 @@ function mapStoreToProps(store) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return {}
+  return {
+    generateTable: () => store.dispatch(generateTable()),
+    setDisplayedTable: () => store.dispatch(setDisplayedTable()),
+    removeTeams: () => store.dispatch(removeTeams()),
+    selectTeam: () => store.dispatch(selectTeam()),
+  }
 }
 
 
