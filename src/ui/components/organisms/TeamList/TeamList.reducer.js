@@ -1,13 +1,15 @@
 const dataInitialState = {
   teams: {
     displayed: [],
-    raw: []
+    raw: [],
+    deleted: []
   },
 };
 
+
 export default (state = dataInitialState, action) => {
   switch (action.type) {
-    case "[TEAM_LIST] SET_TEAMS": {
+    case "[TEAM_LIST] SET_RAW_TEAMS": {
       return {
         ...state,
         teams: {
@@ -23,6 +25,16 @@ export default (state = dataInitialState, action) => {
         teams: {
           ...state.teams,
           displayed: action.payload
+        }
+      };
+    }
+
+    case "[TEAM_LIST] SET_DELETED_TEAMS": {
+      return {
+        ...state,
+        teams: {
+          ...state.teams,
+          deleted: action.payload
         }
       };
     }

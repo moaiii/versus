@@ -7,3 +7,6 @@ export const getGames
 
 export const setGames
   = actionCreator("[GAMES] SET_GAMES");
+
+export const setFilteredGames
+  = actionCreator("[GAMES] SET_FILTERED_GAMES");

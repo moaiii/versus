@@ -1,6 +1,8 @@
 const gamesInitialState = {
   games: [],
+  gamesFiltered: []
 };
+
 
 export default (state = gamesInitialState, action) => {
   switch (action.type) {
@@ -11,7 +13,14 @@ export default (state = gamesInitialState, action) => {
     case "[GAMES] GET_GAMES__RESOLVED": {
       return {
         ...state,
-        games: action.payload
+        games: action.payload,
+      };
+    }
+
+    case "[GAMES] SET_FILTERED_GAMES": {
+      return {
+        ...state,
+        gamesFiltered: action.payload
       };
     }
 

@@ -21,6 +21,7 @@ describe ('excudeOppositionTeams()', () => {
   });
 });
 
+
 describe('includeOppositionTeams()', () => {
   const exclusiveClubs = ['Arsenal', 'Liverpool', 'Everton', 'Chelsea'];
 
@@ -46,6 +47,7 @@ describe('includeOppositionTeams()', () => {
   });
 });
 
+
 describe ('getThisTeamsGames()', () => {
   const allManchesterCitiesGames = gameFuncs
     .getThisTeamsGames('ManchesterCity')(games);
@@ -57,6 +59,7 @@ describe ('getThisTeamsGames()', () => {
     });
   });
 });
+
 
 describe ('filterOutGoals()', () => {
   const timeWindow = {from: 0, to: 45};
@@ -72,6 +75,14 @@ describe ('filterOutGoals()', () => {
     });
   });
 });
+
+describe('filterGames', () => {
+  const filtered = gameFuncs.filterGames({games, teamExclusions: ['Chelsea']});
+
+  it('works!', () => {
+    expect(true).toBe(true);
+  })
+})
 
 // describe ('filterOutCards()', () => {
 //   const timeWindow = {from: 0, to: 45};

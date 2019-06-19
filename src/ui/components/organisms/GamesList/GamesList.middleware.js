@@ -1,9 +1,10 @@
 // @Flow
-import { getGames } from './GamesList.action';
+import { getGames, setFilteredGames } from './GamesList.action';
 import { generateTeamObjects } from '../TeamList/TeamList.action';
 import fp from 'lodash/fp';
 import {networkRequest} from '../../../../utils/network';
 import endpoints from '../../../../utils/enums/endpoints';
+import {filterGames} from '../../../../utils/functions';
 
 
 export default {
@@ -19,5 +20,31 @@ export default {
       console.error(`[ERROR] get games middleware\n`, error);
       store.dispatch(getGames.rejected(JSON.stringify(error)));
     }
-  }
+  },
+
+
+  // '[GAMES] GET_GAMES__RESOLVED': async (store, next, action) => {
+  //   store.dispatch(setFilteredGames(action.payload));
+  // },
+
+
+  '[GAMES] SET_FILTERED_GAMES': async (store, next, action) => {
+    const {
+      team,
+      teamExclusions,
+      teamInclusions,
+      timeWindow,
+      excludedPlayers,
+    } = action.payload;
+
+    const { games } = store.getState().GamesListReducer;
+
+    const filteredGames = filterGames({
+      games,
+      ...action.payload
+    });
+
+    console.log('New filtered games!', filteredGames);
+    action.payload = filteredGames;
+  },
 };

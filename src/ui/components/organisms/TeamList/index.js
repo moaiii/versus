@@ -6,7 +6,7 @@ import TeamListMiddleware from './TeamList.middleware';
 import TeamListReducer from './TeamList.reducer';
 import {
   generateTeamObjects,
-  setTeams,
+  setRawTeams,
   setDisplayedTeams
 } from "./TeamList.action";
 

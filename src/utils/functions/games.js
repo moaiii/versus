@@ -10,6 +10,10 @@ const find = require('lodash/find');
  */
 function getThisTeamsGames(team = '') {
   return (games) => {
+    if(!team || team === '') {
+      return games
+    }
+
     return games
       .filter((game) =>
         game.match_hometeam_name === team ||
@@ -207,7 +211,7 @@ function filterGames({
     filterOutGoals(timeWindow),
     excudeOppositionTeams(teamExclusions),
     includeOppositionTeams(teamInclusions),
-    getThisTeamsGames(team)
+    // getThisTeamsGames(team)
   )(games);
 }
 

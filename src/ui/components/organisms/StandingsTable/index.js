@@ -1,9 +1,12 @@
-// @flow
-
 import StandingsTable from "./StandingsTable.jsx";
-import store from '../../../../utils/redux';
+import {store} from '../../../../utils/redux';
 import { connect } from "react-redux";
-import * as actions from './StandingsTable.actions';
+import {
+  generateTable,
+  setDisplayedTable,
+  removeTeams,
+  selectTeam
+} from './StandingsTable.actions';
 import StandingsTableMiddleware from './StandingsTable.middleware';
 import StandingsTableReducer from './StandingsTable.reducer';
 
@@ -18,7 +21,10 @@ function mapDispatchToProps (dispatch) {
   return {
     generateTable: () => store.dispatch(generateTable()),
     setDisplayedTable: () => store.dispatch(setDisplayedTable()),
-    removeTeams: () => store.dispatch(removeTeams()),
+    removeTeams: (selectedForDeletion) => store.dispatch(removeTeams({
+      selectedForDeletion,
+      middlewareMode: 'last'
+    })),
     selectTeam: () => store.dispatch(selectTeam()),
   }
 }
