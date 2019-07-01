@@ -1,4 +1,3 @@
-// @flow
 import * as React from "react";
 import { DualSlider } from '../../atoms';
 import './GameWindow.scss';
@@ -17,7 +16,7 @@ export default class GameWindow extends React.Component {
   };
 
   handleTimeWindowChange = (e) => {
-    const [to, from] = e;
+    const [from, to] = e;
 
     this.props.onChange({
       key: 'timeWindow',

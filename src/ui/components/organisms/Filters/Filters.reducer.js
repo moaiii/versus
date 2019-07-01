@@ -1,5 +1,5 @@
 let initialState = {
-  gameTimeWindow: {
+  timeWindow: {
     from: 0,
     to: 90,
   }

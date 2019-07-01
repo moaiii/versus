@@ -7,11 +7,12 @@ import middlewareRouter from './middleware';
 import { CountrySelectorReducer } from '../../ui/components/molecules/CountrySelector';
 import { DateSelectorReducer } from '../../ui/components/molecules/DateSelector';
 import { LeagueSelectorReducer } from '../../ui/components/molecules/LeagueSelector';
-import { FiltersReducer } from '../../ui/components/organisms/Filters';
 import { GamesListReducer } from '../../ui/components/organisms/GamesList';
 import { RootSelectorsReducer } from '../../ui/components/organisms/RootSelectors';
 import { StandingsTableReducer } from '../../ui/components/organisms/StandingsTable';
 import { TeamListReducer } from '../../ui/components/organisms/TeamList';
+import FiltersReducer from '../../ui/components/organisms/Filters/Filters.reducer';
+
 
 const logger = createLogger({
   collapsed: true, diff: true

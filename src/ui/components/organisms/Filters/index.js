@@ -1,4 +1,3 @@
-// @flow
 import {connect} from 'react-redux';
 import { store } from '../../../../utils/redux';
 import Filters from './Filters.jsx';
@@ -29,7 +28,8 @@ export default connect(
   mapDispatchToProps
 )(Filters);
 
+
 export {
   FiltersMiddleware,
   FiltersReducer,
-}
+};

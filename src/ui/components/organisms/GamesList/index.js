@@ -27,5 +27,5 @@ export default connect(
 
 export {
   GamesListMiddleware,
-  GamesListReducer
+  GamesListReducer,
 }

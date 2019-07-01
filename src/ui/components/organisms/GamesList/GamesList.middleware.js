@@ -28,23 +28,23 @@ export default {
   // },
 
 
-  '[GAMES] SET_FILTERED_GAMES': async (store, next, action) => {
-    const {
-      team,
-      teamExclusions,
-      teamInclusions,
-      timeWindow,
-      excludedPlayers,
-    } = action.payload;
+  // '[GAMES] SET_FILTERED_GAMES': async (store, next, action) => {
+  //   const {
+  //     team,
+  //     teamExclusions,
+  //     teamInclusions,
+  //     timeWindow,
+  //     excludedPlayers,
+  //   } = action.payload;
 
-    const { games } = store.getState().GamesListReducer;
+  //   const { games } = store.getState().GamesListReducer;
 
-    const filteredGames = filterGames({
-      games,
-      ...action.payload
-    });
+  //   const filteredGames = filterGames({
+  //     games,
+  //     ...action.payload
+  //   });
 
-    console.log('New filtered games!', filteredGames);
-    action.payload = filteredGames;
-  },
+  //   console.log('New filtered games!', filteredGames);
+  //   action.payload = filteredGames;
+  // },
 };

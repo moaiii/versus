@@ -1,4 +1,3 @@
-// @flow
 // import type {Game} from '../types';
 const compose = require('fp-compose');
 const find = require('lodash/find');
@@ -67,14 +66,30 @@ function filterOutGoals(timeWindow = null) {
     if (!timeWindow) {
       return games;
     }
-      return games
-        .map((game) => Object.assign({}, game, {
-          goalscorer: game['goalscorer'].filter((gs) =>
-            parseInt(gs.time, 10) >= timeWindow.from &&
-            parseInt(gs.time, 10) <= timeWindow.to
-          )
-        }));
 
+    const newGames = games
+      .map((game) => {
+        const naughtyCharacterRegex = /\'/g;
+
+        const newGoalScorers = Object.assign({}, game, {
+          goalscorer: game['goalscorer']
+            .map(gs => {
+              return {
+                ...gs, 
+                time: parseInt(
+                  gs.time.replace(naughtyCharacterRegex, ''), 10
+                )
+              }
+            })
+            .filter(
+              gs => gs.time >= timeWindow.from && gs.time <= timeWindow.to
+            )
+        })
+
+        return newGoalScorers;
+      });
+
+    return newGames;
   };
 }
 
@@ -204,14 +219,17 @@ function filterGames({
   games = [],
   excludedPlayers = []
 }){
+  console.log({team,
+    teamExclusions,
+    teamInclusions,
+    timeWindow,
+    games,
+    excludedPlayers})
   return compose(
-    // excludeGamesThesePlayersStart(excludedPlayers),
-    // filterOutCards(timeWindow),
     recalculateScores(),
     filterOutGoals(timeWindow),
     excudeOppositionTeams(teamExclusions),
     includeOppositionTeams(teamInclusions),
-    // getThisTeamsGames(team)
   )(games);
 }
 
