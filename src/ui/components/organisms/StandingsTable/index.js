@@ -1,20 +1,21 @@
 // @flow
 
 import StandingsTable from "./StandingsTable.jsx";
-import store from '../../../../utils/redux';
 import { connect } from "react-redux";
 import * as actions from './StandingsTable.actions';
 
 function mapStoreToProps(store) {
   return {
-    table: store.dataReducer.table,
+    removed: store.standingsReducer.removed,
+    selected: store.standingsReducer.selected,
+    table: store.dataReducer.table
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    handleDeleteTeams: () => dispatch(actions.removeTeams()),
-    handleSelectTeam: (teams) => dispatch(actions.selectTeam(teams)),
+    handleDeleteTeams: teams => dispatch(actions.removeTeams(teams)),
+    handleSelectTeam: teams => dispatch(actions.selectTeam(teams))
   }
 }
 

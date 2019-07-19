@@ -1,11 +1,11 @@
 // @Flow
 import * as actions from './Home.actions'
 import fp from 'lodash/fp';
-import {networkRequest} from '../../../utils/network';
+import { networkRequest } from '../../../utils/network';
 import endpoints from '../../../utils/enums/endpoints';
 import seasonDates from '../../../utils/enums/season-dates.json';
-import { getAllTeamsAndPlayers, getThisTeamsGames, generateStandings } from '../../../utils/functions';
-import { sortBy } from 'lodash';
+import { getAllTeamsAndPlayers, getThisTeamsGames, standings } from '../../../utils/functions';
+
 
 const dataMiddleware = {
   /**
@@ -27,11 +27,11 @@ const dataMiddleware = {
         .map(team => {
           return {
             ...team,
-            standings: generateStandings(team.name, team.games)
+            standings: standings.generateStandings(team.name, team.games)
           }
         });
 
-        store.dispatch(actions.setTeams(teamsWithData));
+      store.dispatch(actions.setTeams(teamsWithData));
 
     } catch (error) {
       console.error(`[ERROR] generating the team objects\n`, error);
@@ -51,10 +51,9 @@ const dataMiddleware = {
 
   '[DATA] GENERATE_TABLE': async (store, next, action) => {
     try {
-      const { dataReducer: { teams } } = store.getState();
-      const tableSorted = sortBy(teams, el => el.standings.pointsTotal).reverse();
-      store.dispatch(actions.setTable(tableSorted));
 
+      const { dataReducer: { teams } } = store.getState();
+      store.dispatch(actions.setTable(standings.formatStandings(teams)));
     } catch (error) {
       console.error(`[ERROR] setting teams games\n`, error);
     }
@@ -82,12 +81,11 @@ const countriesMiddleware = {
    * @dispatches getLeagues
    */
   '[COUNTRIES] SET_SELECTED_COUNTRY': async (store, next, action) => {
-    if(action) {
+    if (action) {
       store.dispatch(actions.getLeagues.submit(action.payload));
     }
   },
 };
-
 
 
 const seasonsMiddleware = {
@@ -96,7 +94,7 @@ const seasonsMiddleware = {
   },
 
   '[DATES] SET_DATE_SELECTION': async (store, next, action) => {
-    const {start, end} = action.payload.dates;
+    const { start, end } = action.payload.dates;
     const _dates = {
       'from': `${start.year}-${start.month}-${start.day}`,
       'to': `${end.year}-${end.month}-${end.day}`,
@@ -104,7 +102,7 @@ const seasonsMiddleware = {
     action.payload = _dates;
     const league_id = store.getState().leaguesReducer.selected.league_id;
     store.dispatch(actions.getGames.submit({
-      req: {..._dates, league_id},
+      req: { ..._dates, league_id },
       middlewareMode: "last"
     }));
   },
@@ -140,7 +138,7 @@ const leaguesMiddleware = {
     }
   },
 
-  '[LEAGUES] SET_SELECTED_LEAGUE': async (store, next, action) => {},
+  '[LEAGUES] SET_SELECTED_LEAGUE': async (store, next, action) => { },
 
   '[LEAGUES] GET_LEAGUE_STANDINGS__SUBMIT': async (store, next, action) => {
     const _endpoint = endpoints['GET_LEAGUE_STANDINGS'];

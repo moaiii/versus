@@ -1,5 +1,5 @@
 export { getAllTeamsAndPlayers } from './teams';
-export { generateStandings } from './standings';
+export { default as standings } from './standings';
 export {
   filterGames,
   filterOutGoals,

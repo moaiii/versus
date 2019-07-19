@@ -190,6 +190,7 @@ export const dataReducer = (state = dataInitialState, action) => {
       };
     }
     case "[DATA] SET_TABLE": {
+
       return {
         ...state,
         table: action.payload
