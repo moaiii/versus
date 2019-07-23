@@ -1,4 +1,5 @@
-import { actionCreator, networkActionCreator } from '../../../../utils/redux/actionCreators';
+import { actionCreator } from '../../../../utils/redux/actionCreators';
+
 
 export const removeTeams
 = actionCreator("[STANDINGS TABLE] REMOVE_TEAMS");

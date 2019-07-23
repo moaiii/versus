@@ -1,4 +1,5 @@
-import {getThisTeamsStatus} from './games';
+import fp from 'lodash/fp';
+import { getThisTeamsStatus } from './games';
 
 const add = require('lodash/add');
 
@@ -11,7 +12,7 @@ const cleanScore = (scoreDirty) => {
  * @param {string} team
  * @param {Array<Game>} games
  */
-function generateStandings(team= '', games = []) {
+function generateStandings(team = '', games = []) {
   let points = [];
   let pointsCumulative = [];
   let form = [];
@@ -83,6 +84,32 @@ function generateStandings(team= '', games = []) {
   };
 }
 
-export {
+const fpMap = fp.map.convert({ cap: false })
+
+const formatStandings = fp.flow(
+  fp.map(team => {
+
+    const { standings } = team;
+    return {
+      Club: team.name,
+      Played: standings.gamesTotal.played,
+      Won: standings.gamesTotal.won,
+      Drawn: standings.gamesTotal.drawn,
+      Lost: standings.gamesTotal.lost,
+      GF: standings.goals.for,
+      GA: standings.goals.against,
+      GD: standings.goals.difference,
+      Points: standings.pointsTotal
+    }
+  }),
+  fp.orderBy(['Points'], ['desc']),
+  fpMap((team, index) => ({
+    ...team,
+    Position: index + 1
+  }))
+)
+
+export default {
+  formatStandings,
   generateStandings
 };

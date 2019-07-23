@@ -1,4 +1,5 @@
 // @flow
+import fp from 'lodash/fp';
 import * as React from "react";
 import { BasicSelector } from '../../components/atoms';
 import './Home.scss'
@@ -12,12 +13,12 @@ export default class Home extends React.Component {
     this.state = {};
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.getSeasons();
     this.props.getCountries();
   }
 
-  shouldComponentUpdate(nextProps, nextState){
+  shouldComponentUpdate(nextProps, nextState) {
     return true;
   };
 
@@ -35,7 +36,7 @@ export default class Home extends React.Component {
 
     const _countriesSelector =
       <BasicSelector
-        options={countries}
+        options={fp.sortBy(['country_name'], countries)}
         pickString={'country_name'}
         handleChangeCallback={setSelectedCountry}
         label={'Country'}
@@ -56,14 +57,6 @@ export default class Home extends React.Component {
         handleChangeCallback={setDateSelection}
         label={'Select season'}
       />;
-
-    const _leagueTablePOC =
-    <div className="league-table">
-      {
-        table.map(team => (<p>{team.name}, p({team.standings.gamesTotal.played}), pts({team.standings.pointsTotal})</p>))
-      }
-    </div>
-
 
     const _gamesList = games.map((game, i) => {
       const {
